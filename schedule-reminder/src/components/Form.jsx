@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Form.css';
 
 function Form() {
-	const url = 'https://localhost:7075';
+	const url = 'https://localhost:7075/api/Reminders';
 	const [data, setData] = useState({
 		to: '',
 		method: '',
@@ -13,14 +13,14 @@ function Form() {
 
 	const submit = (e) => {
 		e.preventDefault();
-		axios
-			.post(url, {
-				to: data.to,
-				method: data.method,
-				sendAt: new Date().toUTCString(),
-				content: data.content,
-			})
-			.then((response) => console.log(response));
+		const formData = {
+			to: data.to,
+			method: data.method,
+			sendAt: new Date(data.sendAt).toISOString(),
+			content: data.content,
+		};
+		// console.log(formData.sendAt);
+		axios.post(url, formData).then((response) => console.log(response));
 	};
 
 	const handle = (e) => {
@@ -77,12 +77,17 @@ function Form() {
 						name="content"
 					/>
 				</div>
-				<button type="submit" class="btn">
-					Submit
-				</button>
+				<button class="btn">Submit</button>
 			</form>
 		</div>
 	);
 }
 
 export default Form;
+
+// {
+// 	to: data.to,
+// 	method: data.method,
+// 	sendAt: data.sendAt.toISOString(),
+// 	content: data.content,
+// }
