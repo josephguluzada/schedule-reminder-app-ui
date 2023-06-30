@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Form.css';
 
 function Form() {
+	const url = 'https://localhost:7075';
 	const [data, setData] = useState({
 		to: '',
 		method: '',
-		sendAt: '',
+		sendAt: '', // belke de new Date() yazmaliyam
 		content: '',
 	});
+
+	const submit = (e) => {
+		e.preventDefault();
+		axios
+			.post(url, {
+				to: data.to,
+				method: data.method,
+				sendAt: new Date().toUTCString(),
+				content: data.content,
+			})
+			.then((response) => console.log(response));
+	};
 
 	const handle = (e) => {
 		const newData = { ...data };
@@ -18,7 +32,7 @@ function Form() {
 
 	return (
 		<div>
-			<form action="#">
+			<form onSubmit={(e) => submit(e)}>
 				<div class="form-group">
 					<label>To (email or telegram id) </label>
 					<input
@@ -49,7 +63,7 @@ function Form() {
 						id="sendAt"
 						type="datetime-local"
 						value={data.sendAt}
-						name="sendat"
+						name="sendAt"
 					/>
 				</div>
 				<div class="form-group">
