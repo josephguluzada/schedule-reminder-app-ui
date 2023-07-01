@@ -1,1 +1,1 @@
-# schedule-reminder-app-ui
+# Schedule-reminder-app-ui
