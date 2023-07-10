@@ -19,7 +19,6 @@ function Form() {
       sendAt: new Date(data.sendAt).toISOString(),
       content: data.content,
     };
-    // console.log(formData.sendAt);
     axios.post(url, formData).then((response) => console.log(response));
   };
 
@@ -84,10 +83,3 @@ function Form() {
 }
 
 export default Form;
-
-// {
-// 	to: data.to,
-// 	method: data.method,
-// 	sendAt: data.sendAt.toISOString(),
-// 	content: data.content,
-// }
