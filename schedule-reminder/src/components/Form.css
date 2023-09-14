@@ -250,3 +250,8 @@ label {
     right: 0;
   }
 }
+
+.error {
+  color: #000;
+  font-weight: bold;
+}
