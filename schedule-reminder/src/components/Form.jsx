@@ -32,30 +32,34 @@ function Form() {
   return (
     <div>
       <form onSubmit={(e) => submit(e)}>
-        <div class="form-group">
-          <label>To (email or telegram id) </label>
+        <h1 className="header">Message schedule app</h1>
+        <div className="form-group">
+          <label>To</label>
           <input
             onChange={(e) => handle(e)}
             id="to"
             type="text"
-            class="form-control"
+            className="input"
             value={data.to}
             name="to"
+            placeholder="Email or Telegram Id"
+            autoComplete="off"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label>Method</label>
           <select
             onChange={(e) => handle(e)}
             id="method"
             value={data.method}
             name="method"
+            className="input"
           >
             <option value="email">Email</option>
             <option value="telegram">Telegram</option>
           </select>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label>Send at date</label>
           <input
             onChange={(e) => handle(e)}
@@ -63,20 +67,25 @@ function Form() {
             type="datetime-local"
             value={data.sendAt}
             name="sendAt"
+            className="input"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label>Content</label>
           <input
             onChange={(e) => handle(e)}
             id="content"
             type="text"
-            class="form-control"
+            className="input"
             value={data.content}
             name="content"
+            placeholder="Content"
+            autoComplete="off"
           />
         </div>
-        <button class="btn">Submit</button>
+        <button className="ui-btn">
+          <span>Send it</span>
+        </button>
       </form>
     </div>
   );
