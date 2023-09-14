@@ -2,6 +2,8 @@ import axios from "axios";
 import "./Form.css";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const validationSchema = Yup.object().shape({
   to: Yup.string().required("To field is required"),
@@ -30,7 +32,16 @@ function Form() {
         sendAt: new Date(values.sendAt).toISOString(),
         content: values.content,
       };
-      axios.post(url, formData).then((response) => console.log(response));
+      const isSuccess = true; // Change this based on your actual submission logic
+
+      if (isSuccess) {
+        axios.post(url, formData).then((response) => {
+          toast.success("Message sent successfully");
+          console.log(response);
+        });
+      } else {
+        toast.error("Message sending failed");
+      }
     },
   });
 
