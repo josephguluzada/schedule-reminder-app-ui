@@ -2,8 +2,10 @@ import axios from "axios";
 import "./Form.css";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Tooltip from "../components/tooltips/Tooltip";
+import QuestionMarkIcon from "../components/questionMarkIcon/QuestionMarkIcon";
 
 const validationSchema = Yup.object().shape({
   to: Yup.string().required("To field is required"),
@@ -32,8 +34,7 @@ function Form() {
         sendAt: new Date(values.sendAt).toISOString(),
         content: values.content,
       };
-      const isSuccess = true; // Change this based on your actual submission logic
-
+      const isSuccess = true;
       if (isSuccess) {
         axios.post(url, formData).then((response) => {
           toast.success("Message sent successfully");
@@ -71,17 +72,23 @@ function Form() {
         <div className="form-group">
           <label>Method</label>
           <div>
-            <select
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.method}
-              id="method"
-              name="method"
-              className="input"
-            >
-              <option value="email">Email</option>
-              <option value="telegram">Telegram</option>
-            </select>
+            <div>
+              <select
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.method}
+                id="method"
+                name="method"
+                className="input"
+              >
+                <option value="email">Email</option>
+                <option value="telegram">Telegram</option>
+              </select>
+              <Tooltip text="*Telegram: For using telegram activate bot '@scheduler_bot' in telegram first.(type /start)">
+                <QuestionMarkIcon />
+              </Tooltip>
+            </div>
+
             {formik.touched.method && formik.errors.method ? (
               <div className="error">{formik.errors.method}</div>
             ) : null}

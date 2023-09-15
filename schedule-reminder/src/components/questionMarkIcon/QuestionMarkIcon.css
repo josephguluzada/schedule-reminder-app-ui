@@ -1,0 +1,13 @@
+.tooltip {
+  position: absolute !important;
+  left: 81% !important;
+  top: 41% !important;
+  font-weight: bold;
+  font-size: 26px;
+  color: #000;
+}
+
+.tooltiptext {
+  font-weight: 300;
+  font-size: 16px;
+}
